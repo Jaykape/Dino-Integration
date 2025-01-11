@@ -19,7 +19,7 @@ addEventListener("fetch", async (event) => {
       console.log("Request Payload:", payload); // Log the payload
 
       
-      const inputvalues = payload.events.inputs;
+      const inputvalues = payload.event.inputs;
       const requester = inputvalues.User;
       const text = inputvalues.String;
       
