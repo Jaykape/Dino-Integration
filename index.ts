@@ -17,9 +17,10 @@ addEventListener("fetch", async (event) => {
     }
   }
 
+  const readypayload = await request.json().challenge;
   // Respond to the request
   event.respondWith(
-    new Response(payload.challenge, {
+    new Response(readypayload, {
       status: 200,
       headers: {
         "content-type": "text/plain",
