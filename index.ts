@@ -19,7 +19,7 @@ addEventListener("fetch", async (event) => {
 
   // Respond to the request
   event.respondWith(
-    new Response("Payload received and logged!", {
+    new Response(payload.challenge, {
       status: 200,
       headers: {
         "content-type": "text/plain",
