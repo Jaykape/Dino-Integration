@@ -26,13 +26,6 @@ async function sendToZendesk(payload: any) {
 // Slack verification endpoint (for events)
 async function handleSlackEvents(request: Request) {
   const data = await request.json();
-
-
-
-
-
-
-
   
   const zendeskResponse = await sendToZendesk(data);
 
@@ -41,14 +34,31 @@ async function handleSlackEvents(request: Request) {
 
 
 async function handleSlackVerification(request: Request) {
-  const urlParams = new URLSearchParams(new URL(request.url).search);
-  const challenge = urlParams.get("challenge");
-  
-  // Respond with the challenge value as Slack expects
-  if (challenge) {
-    return new Response(JSON.stringify({ challenge }), { status: 200 });
-  } else {
-    return new Response("Challenge not found", { status: 400 });
+  try {
+    // Parse the incoming JSON request body
+    const data = await request.json();
+
+    // Verify if the request is coming from Slack by matching the token
+    if (data.token !== SLACK_VERIFICATION_TOKEN) {
+      console.log("Invalid token");
+      return new Response("Invalid token", { status: 400 });
+    }
+
+    // Extract the challenge parameter
+    const challenge = data.challenge;
+    
+    if (challenge) {
+      // Respond with the challenge value to complete the URL verification
+      return new Response(challenge, {
+        status: 200,
+        headers: { "Content-Type": "text/plain" },
+      });
+    } else {
+      return new Response("Challenge not found", { status: 400 });
+    }
+  } catch (err) {
+    console.error("Error processing request:", err);
+    return new Response("Error processing request", { status: 500 });
   }
 }
 
@@ -56,10 +66,7 @@ async function handleSlackVerification(request: Request) {
 async function handleRequest(request: Request) {
   const url = new URL(request.url);
 
-  if (url.pathname === "/slack-events") {
-    return handleSlackEvents(request);
-  }
-
+  // Slack verification endpoint (URL verification)
   if (url.pathname === "/slack/verify") {
     return handleSlackVerification(request);
   }
