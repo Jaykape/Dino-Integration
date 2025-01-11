@@ -8,6 +8,7 @@ addEventListener("fetch", async (event) => {
 
   // Check if the content type is JSON
   const contentType = request.headers.get("content-type");
+  let payload;
   if (contentType && contentType.includes("application/json")) {
     try {
       const payload = await request.json(); // Parse the JSON body
