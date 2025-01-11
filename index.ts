@@ -7,6 +7,8 @@ const ZENDESK_EMAIL = "jay@pratuproperty.com/token";
 const ZENDESK_API_TOKEN = "Ol0lZCABheMCVaTlkO4wKspSDbnaK0Coq9n6NvsE"; 
 const TICKET_FORM_ID = 11704013998479; 
 const auth = btoa(`${ZENDESK_EMAIL}:${ZENDESK_API_TOKEN}`);
+const zendeskUrl = `https://${ZENDESK_SUBDOMAIN}.zendesk.com/api/v2/tickets.json`;
+
 
 addEventListener("fetch", async (event) => {
   const request = event.request;
