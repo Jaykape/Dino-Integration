@@ -1,5 +1,9 @@
 // server.ts
 
+const dctUser={"U05RRKK69JP":"Josh"};
+
+
+
 addEventListener("fetch", async (event) => {
   const request = event.request;
   
