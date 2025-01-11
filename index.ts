@@ -14,7 +14,28 @@ addEventListener("fetch", async (event) => {
       const payload = await request.json(); // Parse the JSON body
       console.log("Request Payload:", payload); // Log the payload
 
-       const readypayload = payload.challenge;
+      
+      const inputvalues = payload.events.input;
+      const requester = inputvalues.User;
+      const text = inputvalues.String;
+      
+
+      console.log("Requester: ", requester, "want", text);
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      const readypayload = payload.challenge;
   // Respond to the request
   event.respondWith(
     new Response(readypayload, {
