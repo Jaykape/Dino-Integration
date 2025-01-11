@@ -43,7 +43,13 @@ async function handleSlackEvents(request: Request) {
 async function handleSlackVerification(request: Request) {
   const urlParams = new URLSearchParams(new URL(request.url).search);
   const challenge = urlParams.get("challenge");
-  return new Response(JSON.stringify({ challenge }), { status: 200 });
+  
+  // Respond with the challenge value as Slack expects
+  if (challenge) {
+    return new Response(JSON.stringify({ challenge }), { status: 200 });
+  } else {
+    return new Response("Challenge not found", { status: 400 });
+  }
 }
 
 // Main request handler
