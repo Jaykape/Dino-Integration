@@ -24,7 +24,7 @@ addEventListener("fetch", async (event) => {
       const text = inputvalues.String;
       
 
-      console.log("Requester: ", requester, "want", dctUser[text]);
+      console.log("Requester: ", dctUser[requester], "want", text);
       
       
       
