@@ -17,7 +17,7 @@ addEventListener("fetch", async (event) => {
     }
   }
 
-  const readypayload = await request.json().challenge;
+  const readypayload = payload.challenge;
   // Respond to the request
   event.respondWith(
     new Response(readypayload, {
