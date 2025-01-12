@@ -41,7 +41,9 @@ addEventListener("fetch", async (event) => {
       email: "jay@pratuproperty.com", // Replace with a valid requester email
     },
     ticket_form_id: TICKET_FORM_ID,
-    "custom_fields": [{"Requester": 25356371, "What they want": "I bought it at Buy More."}]
+    "custom_fields": [{"id": 11703959548175, "value": "Josh"},
+                      {"id": 11703986698639, "value": "Some cake"}
+                     ]
   },
 };
       
